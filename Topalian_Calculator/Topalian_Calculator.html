@@ -1,0 +1,428 @@
+<!-- Dedicated to God the Father -->
+
+<!-- https://github.com/ChristopherTopalian -->
+
+<!-- All Rights Reserved Christopher Topalian Copyright 2000-2023 -->
+
+<!-- Topalian_Calculator.html -->
+
+<!-- Version 001 -->
+
+<html>
+<head>
+<title> Topalian Calculator </title>
+
+<style>
+
+body
+{
+    background-color: rgb(40, 40, 40);
+    color: rgb(255, 255, 255);
+}
+
+.theScreenStyle
+{
+    min-width: 400px;
+    padding-left: 10px;
+    padding-right: 10px;
+    border-style: solid;
+    border-width: 2px;
+    border-color: rgb(255, 255, 255);
+    border-radius: 8px;
+    font-size: 50px;
+    color: rgb(255, 255, 255);
+}
+
+.buttonNumbers
+{
+    padding: 2px;
+    margin: 2px;
+    border-radius: 8px;
+    background-color: rgb(40, 40, 40);
+    font-size: 40px;
+    color: rgb(255, 255, 255);
+}
+
+.buttonSymbols
+{
+    position: relative;
+    left: 0px;
+    width: 45px;
+    padding: 5px;
+    margin: 5px;
+    border-radius: 8px;
+    background-color: rgb(0, 0, 0);
+    font-size: 20px;
+    color: rgb(255, 255, 255);
+    display: flex;
+    flex-direction: column;
+}
+
+</style>
+
+<script>
+
+let calculationArray = [];
+
+function createCalculator()
+{
+    if (document.getElementById("mainDiv"))
+    {
+        document.getElementById("mainDiv").remove();
+    }
+
+    //----//
+
+    let mainDiv = document.createElement("div");
+    mainDiv.id = "mainDiv";
+    mainDiv.style.position = "absolute";
+    mainDiv.style.left = 100 + "px";
+    mainDiv.style.top = 60 + "px";
+    mainDiv.style.height = 374 + "px";
+    mainDiv.style.borderStyle = "solid";
+    mainDiv.style.borderWidth = 2 + "px";
+    mainDiv.style.borderRadius = 4 + "px";
+    mainDiv.style.padding = 8 + "px";
+    document.body.append(mainDiv);
+    
+    //----//
+
+    let theTitle = document.createElement("div");
+    theTitle.style.position = "inherited";
+    theTitle.innerHTML = "Topalian Calculator"
+    theTitle.style.fontSize = 25 + "px";
+    theTitle.style.fontWeight = "bold";
+    theTitle.style.display = "flex";
+    theTitle.style.flexDirection = "column";
+    theTitle.style.alignItems = "center";
+    theTitle.style.margin = "auto";
+    theTitle.style.paddingBottom = 7 + "px";
+    mainDiv.append(theTitle);
+    
+    //----//
+
+    let theScreen = document.createElement("div");
+    theScreen.id = "theScreen";
+    theScreen.className = "theScreenStyle";
+    theScreen.contentEditable = false;
+    theScreen.innerHTML = 0;
+    mainDiv.append(theScreen);
+
+    //----//
+
+    let buttonClear = document.createElement("button");
+    buttonClear.style.position = "absolute";
+    buttonClear.style.top = 55 + "px";
+    buttonClear.style.left = -60 +"px";
+    buttonClear.innerHTML = "C";
+    buttonClear.className = "buttonSymbols";
+    buttonClear.onclick = function()
+    {
+        calculationArray = [];
+        document.getElementById("theScreen").innerHTML = "0";
+    };
+    mainDiv.append(buttonClear);
+    
+    //----//
+
+    let buttonEqual = document.createElement("button");
+    buttonEqual.style.position = "absolute";
+    buttonEqual.style.left = -60 +"px";
+    buttonEqual.style.top = 120 +"px";
+    buttonEqual.innerHTML = "=";
+    buttonEqual.className = "buttonSymbols";
+    buttonEqual.onclick = function()
+    {
+        // comment out this below statement if you don't want it to reset calculationArray to empty
+        calculationArray = [];
+
+        document.getElementById("theScreen").innerText = eval(document.getElementById("theScreen").innerText);
+    };
+    mainDiv.append(buttonEqual);
+
+    //----//
+
+    let numbersDiv = document.createElement("div");
+    numbersDiv.style.position = "relative";
+    numbersDiv.style.left = 0 + "px";
+    numbersDiv.style.top = 5 + "px";
+    numbersDiv.style.display = "grid";
+    numbersDiv.style.gridTemplateRows = "70px 70px 70px";
+    numbersDiv.style.gridTemplateColumns = "50px 50px 50px";
+    mainDiv.append(numbersDiv);
+
+    //----//
+
+    let button1 = document.createElement("button");
+    button1.innerHTML = 1;
+    button1.className = "buttonNumbers";
+    button1.onclick = function()
+    {
+        // add the number to the end of calculationArray
+        calculationArray.push(1);
+        
+        // we use join to get rid of the comma
+        document.getElementById("theScreen").innerHTML = calculationArray.join("");
+    }
+    numbersDiv.append(button1);
+
+    //----//
+
+    let button2 = document.createElement("button");
+    button2.innerHTML = 2;
+    button2.className = "buttonNumbers";
+    button2.onclick = function()
+    {
+        calculationArray.push(2);
+        document.getElementById("theScreen").innerHTML = calculationArray.join("");
+    }
+    numbersDiv.append(button2);
+
+    //----//
+
+    let button3 = document.createElement("button");
+    button3.innerHTML = 3;
+    button3.className = "buttonNumbers";
+    button3.onclick = function()
+    {
+        calculationArray.push(3);
+        document.getElementById("theScreen").innerHTML = calculationArray.join("");
+    }
+    numbersDiv.append(button3);
+
+    //----//
+
+    let button4 = document.createElement("button");
+    button4.innerHTML = 4;
+    button4.className = "buttonNumbers";
+    button4.onclick = function()
+    {
+        calculationArray.push(4);
+        document.getElementById("theScreen").innerHTML = calculationArray.join("");
+    }
+    numbersDiv.append(button4);
+
+    //----//
+
+    let button5 = document.createElement("button");
+    button5.innerHTML = 5;
+    button5.className = "buttonNumbers";
+    button5.onclick = function()
+    {
+        calculationArray.push(5);
+        document.getElementById("theScreen").innerHTML = calculationArray.join("");
+    }
+    numbersDiv.append(button5);
+
+    //----//
+
+    let button6 = document.createElement("button");
+    button6.innerHTML = 6;
+    button6.className = "buttonNumbers";
+    button6.onclick = function()
+    {
+        calculationArray.push(6);
+        document.getElementById("theScreen").innerHTML = calculationArray.join("");
+    }
+    numbersDiv.append(button6);
+
+    //----//
+
+    let button7 = document.createElement("button");
+    button7.innerHTML = 7;
+    button7.className = "buttonNumbers";
+    button7.onclick = function()
+    {
+        calculationArray.push(7);
+        document.getElementById("theScreen").innerHTML = calculationArray.join("");
+    }
+    numbersDiv.append(button7);
+
+    //----//
+
+    let button8 = document.createElement("button");
+    button8.innerHTML = 8;
+    button8.className = "buttonNumbers";
+    button8.onclick = function()
+    {
+        calculationArray.push(8);
+        document.getElementById("theScreen").innerHTML = calculationArray.join("");
+    }
+    numbersDiv.append(button8);
+
+    //----//
+
+    let button9 = document.createElement("button");
+    button9.innerHTML = 9;
+    button9.className = "buttonNumbers";
+    button9.onclick = function()
+    {
+        calculationArray.push(9);
+        document.getElementById("theScreen").innerHTML = calculationArray.join("");
+    }
+    numbersDiv.append(button9);
+
+    //----//
+
+    let button0 = document.createElement("button");
+    button0.innerHTML = 0;
+    button0.className = "buttonNumbers";
+    button0.onclick = function()
+    {
+        calculationArray.push(0);
+        document.getElementById("theScreen").innerHTML = calculationArray.join("");
+    }
+    numbersDiv.append(button0);
+
+    //----//
+
+    let symbolsDiv = document.createElement("div");
+    symbolsDiv.style.position = "absolute";
+    symbolsDiv.style.left = 165 + "px";
+    symbolsDiv.style.top = 112 + "px";
+    symbolsDiv.style.display = "grid";
+    symbolsDiv.style.gridTemplateRows = "50px 50px 50px";
+    symbolsDiv.style.gridTemplateColumns = "50px 50px 50px";
+    mainDiv.append(symbolsDiv);
+    
+    //----//
+
+    let buttonAddition = document.createElement("button");
+    buttonAddition.innerHTML = "+";
+    buttonAddition.className = "buttonSymbols";
+    buttonAddition.onclick = function()
+    {
+        calculationArray.push("+");
+        document.getElementById("theScreen").innerHTML = calculationArray.join("");
+    }
+    symbolsDiv.append(buttonAddition);
+
+    //----//
+
+    let buttonSubtraction = document.createElement("button");
+    buttonSubtraction.innerHTML = "-";
+    buttonSubtraction.className = "buttonSymbols";
+    buttonSubtraction.onclick = function()
+    {
+        calculationArray.push("-");
+        document.getElementById("theScreen").innerHTML = calculationArray.join("");
+    }
+    symbolsDiv.append(buttonSubtraction);
+
+    //----//
+
+    let buttonMultiplication = document.createElement("button");
+    buttonMultiplication.innerHTML = "*";
+    buttonMultiplication.className = "buttonSymbols";
+    buttonMultiplication.onclick = function()
+    {
+        calculationArray.push("*");
+        document.getElementById("theScreen").innerHTML = calculationArray.join("");
+    }
+    symbolsDiv.append(buttonMultiplication);
+
+    //----//
+
+    let buttonDivision = document.createElement("button");
+    buttonDivision.innerHTML = "/";
+    buttonDivision.className = "buttonSymbols";
+    buttonDivision.onclick = function()
+    {
+        calculationArray.push("/");
+        document.getElementById("theScreen").innerHTML = calculationArray.join("");
+    }
+    symbolsDiv.append(buttonDivision);
+
+    //----//
+
+    let buttonModulo = document.createElement("button");
+    buttonModulo.innerHTML = "%";
+    buttonModulo.className = "buttonSymbols";
+    buttonModulo.onclick = function()
+    {
+        calculationArray.push("%");
+        document.getElementById("theScreen").innerHTML = calculationArray.join("");
+    }
+    symbolsDiv.append(buttonModulo);
+
+    //----//
+
+    let buttonPi = document.createElement("button");
+    buttonPi.innerHTML = "π";
+    buttonPi.className = "buttonSymbols";
+    buttonPi.onclick = function()
+    {
+        calculationArray.push(Math.PI);
+        document.getElementById("theScreen").innerHTML = calculationArray.join("");
+    }
+    symbolsDiv.append(buttonPi);
+
+    //----//
+
+    let buttonParenthesisOpen = document.createElement("button");
+    buttonParenthesisOpen.innerHTML = "(";
+    buttonParenthesisOpen.className = "buttonSymbols";
+    buttonParenthesisOpen.onclick = function()
+    {
+        calculationArray.push("(");
+        document.getElementById("theScreen").innerHTML = calculationArray.join("");
+    }
+    symbolsDiv.append(buttonParenthesisOpen);
+
+    //----//
+
+    let buttonParenthesisClosed = document.createElement("button");
+    buttonParenthesisClosed.innerHTML = ")";
+    buttonParenthesisClosed.className = "buttonSymbols";
+    buttonParenthesisClosed.onclick = function()
+    {
+        calculationArray.push(")");
+        document.getElementById("theScreen").innerHTML = calculationArray.join("");
+    }
+    symbolsDiv.append(buttonParenthesisClosed);
+
+    //----//
+
+    let buttonDelete = document.createElement("button");
+    buttonDelete.innerHTML = "Del";
+    buttonDelete.className = "buttonSymbols";
+
+    buttonDelete.onclick = function()
+    {
+        if (calculationArray.length > 1)
+        {
+            calculationArray.pop();
+            document.getElementById("theScreen").innerHTML = calculationArray.join("");
+        }
+        else
+        {
+            calculationArray = [];
+
+            document.getElementById("theScreen").innerHTML = 0;
+        }   
+    }
+
+    symbolsDiv.append(buttonDelete);
+
+    //----//
+
+    let buttonDecimalPoint = document.createElement("button");
+    buttonDecimalPoint.innerHTML = ".";
+    buttonDecimalPoint.className = "buttonSymbols";
+    buttonDecimalPoint.onclick = function()
+    {
+        calculationArray.push(".");
+        document.getElementById("theScreen").innerHTML = calculationArray.join("");
+    }
+    symbolsDiv.append(buttonDecimalPoint);
+}
+
+</script>
+
+</head>
+
+<body onload = "createCalculator();">
+
+</body>
+
+</html>
